@@ -26,16 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <meta name="google-adsense-account" content="ca-pub-6437539287863408" />
-
       <GoogleTagManager
         gtmId={process.env.NEXT_PUBLIC_GTM_ID || "GTM-XXXXXXX"}
       />
-      <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6437539287863408"
-        crossOrigin="anonymous"
-      ></script>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased avenue`}
       >
