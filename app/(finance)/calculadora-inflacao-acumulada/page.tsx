@@ -1,15 +1,24 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { track } from "@/lib/analytics";
 
 export default function InflacaoAcumuladaPage() {
   const [annualPct, setAnnualPct] = useState<string>("3");
   const [years, setYears] = useState<string>("5");
   const [amount, setAmount] = useState<string>("1000");
+
+  useEffect(() => {
+    track({
+      event: "tool_viewed",
+      page_path: "/finance/calculadora-inflacao-acumulada",
+      tool_name: "Calculadora de Inflação Acumulada",
+    });
+  }, []);
 
   const n = (v: string) => Number(v.replace(/,/g, ".") || 0);
 

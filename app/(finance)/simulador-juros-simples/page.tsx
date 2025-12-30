@@ -1,6 +1,7 @@
 "use client";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { track } from "@/lib/analytics";
 
 type Row = { year: number; interest: number; total: number };
 
@@ -8,6 +9,14 @@ export default function SimuladorJurosSimplesPage() {
   const [principal, setPrincipal] = useState<number>(1000);
   const [rate, setRate] = useState<number>(0.05); // taxa anual (5%)
   const [years, setYears] = useState<number>(5);
+
+  useEffect(() => {
+    track({
+      event: "tool_viewed",
+      page_path: "/finance/simulador-juros-simples",
+      tool_name: "Simulador de Juros Simples",
+    });
+  }, []);
 
   const rows: Row[] = useMemo(() => {
     const data: Row[] = [];

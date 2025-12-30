@@ -1,6 +1,7 @@
 "use client";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { track } from "@/lib/analytics";
 
 type Row = { year: number; nominalTotal: number; realTotal: number };
 
@@ -9,6 +10,14 @@ export default function InflacaoVsRendimentoPage() {
   const [nominalRate, setNominalRate] = useState<number>(0.07); // 7% ao ano
   const [inflationRate, setInflationRate] = useState<number>(0.03); // 3% ao ano
   const [years, setYears] = useState<number>(10);
+
+  useEffect(() => {
+    track({
+      event: "tool_viewed",
+      page_path: "/finance/inflacao-vs-rendimento",
+      tool_name: "Inflação x Rendimento",
+    });
+  }, []);
 
   // real rate = (1+nominal)/(1+inflation) - 1
   const realRate = useMemo(

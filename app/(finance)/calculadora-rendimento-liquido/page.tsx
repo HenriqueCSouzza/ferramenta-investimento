@@ -1,16 +1,25 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { track } from "@/lib/analytics";
 
 export default function RendimentoLiquidoPage() {
   const [grossPct, setGrossPct] = useState<string>("10");
   const [taxPct, setTaxPct] = useState<string>("15");
   const [feesPct, setFeesPct] = useState<string>("0.5");
   const [amount, setAmount] = useState<string>("1000");
+
+  useEffect(() => {
+    track({
+      event: "tool_viewed",
+      page_path: "/finance/calculadora-rendimento-liquido",
+      tool_name: "Calculadora de Rendimento Líquido",
+    });
+  }, []);
 
   const n = (v: string) => Number(v.replace(/,/g, ".") || 0);
 

@@ -1,15 +1,24 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { track } from "@/lib/analytics";
 
 export default function CalculadoraCETPage() {
   const [principal, setPrincipal] = useState<string>("10000");
   const [months, setMonths] = useState<string>("12");
   const [monthlyRatePct, setMonthlyRatePct] = useState<string>("1");
+
+  useEffect(() => {
+    track({
+      event: "tool_viewed",
+      page_path: "/finance/calculadora-cet",
+      tool_name: "Calculadora CET (simplificada)",
+    });
+  }, []);
 
   const n = (v: string) => Number(v.replace(/,/g, ".") || 0);
 

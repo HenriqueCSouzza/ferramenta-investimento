@@ -1,6 +1,7 @@
 "use client";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { track } from "@/lib/analytics";
 
 type Row = { year: number; total: number };
 
@@ -9,6 +10,14 @@ export default function SimuladorAportesRegularesPage() {
   const [contribution, setContribution] = useState<number>(200);
   const [monthlyRate, setMonthlyRate] = useState<number>(0.006); // ~0.6% monthly ~7.4% anual
   const [years, setYears] = useState<number>(10);
+
+  useEffect(() => {
+    track({
+      event: "tool_viewed",
+      page_path: "/finance/simulador-aportes-regulares",
+      tool_name: "Simulador de Aportes Regulares",
+    });
+  }, []);
 
   const rows: Row[] = useMemo(() => {
     const r = monthlyRate;

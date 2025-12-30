@@ -1,7 +1,17 @@
 // src/features/compound-interest/ui/CompoundInterestLayout.tsx
+import { useEffect } from "react";
 import CompoundInterestForm from "./CompoundInterestForm";
+import { track } from "@/lib/analytics";
 
 export default function CompoundInterestLayout() {
+  useEffect(() => {
+    track({
+      event: "tool_viewed",
+      page_path: "/finance/simulador-juros-compostos",
+      tool_name: "Simulador de Juros Compostos",
+    });
+  }, []);
+
   return (
     <main className="mx-auto max-w-4xl px-6 py-12">
       <header className="mb-8">

@@ -1,6 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { track } from "@/lib/analytics";
 
 type Row = {
   year: number;
@@ -15,6 +16,14 @@ export default function SimuladorCarteiraPage() {
   const [years, setYears] = useState<number>(10);
   const [alloc, setAlloc] = useState({ stocks: 60, bonds: 30, cash: 10 });
   const returnsRate = { stocks: 0.08, bonds: 0.04, cash: 0.01 };
+
+  useEffect(() => {
+    track({
+      event: "tool_viewed",
+      page_path: "/finance/simulador-carteira",
+      tool_name: "Simulador de Carteira",
+    });
+  }, []);
 
   const compute = (): Row[] => {
     const rows: Row[] = [];

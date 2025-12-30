@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { track } from "@/lib/analytics";
 
 const dependenteDeduction = 2276.26; // valor anual aproximado por dependente (exemplo)
 
@@ -38,6 +39,14 @@ export default function SimuladorIRPFPage() {
   const [annualIncome, setAnnualIncome] = useState<string>("");
   const [deductions, setDeductions] = useState<string>("");
   const [dependents, setDependents] = useState<string>("0");
+
+  useEffect(() => {
+    track({
+      event: "tool_viewed",
+      page_path: "/finance/simulador-imposto-de-renda",
+      tool_name: "Simulador de Imposto de Renda",
+    });
+  }, []);
 
   const numeric = (v: string) =>
     Number(v.replace(/[^0-9.,-]/g, "").replace(/,/g, ".") || 0);

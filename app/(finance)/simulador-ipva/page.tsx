@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { track } from "@/lib/analytics";
 
 const STATE_RATES: { code: string; name: string; rate: number }[] = [
   { code: "SP", name: "São Paulo", rate: 4 },
@@ -19,6 +20,14 @@ export default function SimuladorIPVAPage() {
   const [vehicleValue, setVehicleValue] = useState<string>("");
   const [stateCode, setStateCode] = useState<string>(STATE_RATES[0].code);
   const [customRate, setCustomRate] = useState<string>("");
+
+  useEffect(() => {
+    track({
+      event: "tool_viewed",
+      page_path: "/finance/simulador-ipva",
+      tool_name: "Simulador de IPVA",
+    });
+  }, []);
 
   const numeric = (v: string) =>
     Number(v.replace(/[^0-9.,-]/g, "").replace(/,/g, ".") || 0);

@@ -1,5 +1,5 @@
 "use client";
-import { useState, type ChangeEvent, useMemo } from "react";
+import { useState, type ChangeEvent, useMemo, useEffect } from "react";
 import {
   ResponsiveContainer,
   LineChart,
@@ -20,11 +20,20 @@ import {
   TableHead,
   TableCell,
 } from "@/components/ui/table";
+import { track } from "@/lib/analytics";
 
 export default function SimuladorRendaMensalDesejada() {
   const [desiredMonthly, setDesiredMonthly] = useState<number>(2000);
   const [annualYieldPct, setAnnualYieldPct] = useState<number>(0.06); // 6% ao ano
   const [scenariosRange, setScenariosRange] = useState<number>(2); // +/- percent points
+
+  useEffect(() => {
+    track({
+      event: "tool_viewed",
+      page_path: "/finance/simulador-renda-mensal-desejada",
+      tool_name: "Simulador de Renda Mensal Desejada",
+    });
+  }, []);
 
   const monthlyYield = annualYieldPct / 12;
 

@@ -1,15 +1,24 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { track } from "@/lib/analytics";
 
 export default function CalculadoraReservaPage() {
   const [monthlyExpense, setMonthlyExpense] = useState<string>("");
   const [months, setMonths] = useState<string>("6");
   const [safetyBufferPct, setSafetyBufferPct] = useState<string>("0");
+
+  useEffect(() => {
+    track({
+      event: "tool_viewed",
+      page_path: "/finance/calculadora-reserva-emergencia",
+      tool_name: "Calculadora de Reserva de Emergência  ",
+    });
+  }, []);
 
   const numeric = (v: string) =>
     Number(v.replace(/[^0-9.,-]/g, "").replace(/,/g, ".") || 0);

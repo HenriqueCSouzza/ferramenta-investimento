@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo, type ChangeEvent } from "react";
+import { useState, useMemo, type ChangeEvent, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,6 +22,7 @@ import {
   CartesianGrid,
   Legend,
 } from "recharts";
+import { track } from "@/lib/analytics";
 
 type YearRow = {
   year: number;
@@ -40,6 +41,14 @@ export default function SimuladorFiisPage() {
   const [years, setYears] = useState<number>(10);
   const [reinvest, setReinvest] = useState<boolean>(true);
   const [rows, setRows] = useState<YearRow[]>([]);
+
+  useEffect(() => {
+    track({
+      event: "tool_viewed",
+      page_path: "/finance/simulador-fiis",
+      tool_name: "Simulador de FIIs",
+    });
+  }, []);
 
   function simulate() {
     const result: YearRow[] = [];

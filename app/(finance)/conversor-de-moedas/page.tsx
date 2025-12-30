@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,6 +18,7 @@ import {
   TableHead,
   TableCell,
 } from "@/components/ui/table";
+import { track } from "@/lib/analytics";
 
 type HistoryItem = {
   from: string;
@@ -37,6 +38,14 @@ export default function ConversorDeMoedasPage() {
   const [loading, setLoading] = useState(false);
   const [rate, setRate] = useState<number | null>(null);
   const [history, setHistory] = useState<HistoryItem[]>([]);
+
+  useEffect(() => {
+    track({
+      event: "tool_viewed",
+      page_path: "/finance/conversor-de-moedas",
+      tool_name: "Conversor de Moedas",
+    });
+  }, []);
 
   async function convert() {
     if (from === to) return;

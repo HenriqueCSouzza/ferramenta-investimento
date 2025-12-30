@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,6 +11,7 @@ import {
   TableHead,
   TableCell,
 } from "@/components/ui/table";
+import { track } from "@/lib/analytics";
 
 type Row = {
   year: number;
@@ -28,6 +29,14 @@ export default function SimuladorDividendosPage() {
   const [years, setYears] = useState<number>(10);
   const [reinvest, setReinvest] = useState<boolean>(false);
   const [rows, setRows] = useState<Row[]>([]);
+
+  useEffect(() => {
+    track({
+      event: "tool_viewed",
+      page_path: "/finance/simulador-dividendos",
+      tool_name: "Simulador de Dividendos",
+    });
+  }, []);
 
   function simulate() {
     const result: Row[] = [];

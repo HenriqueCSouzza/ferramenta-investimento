@@ -1,14 +1,22 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { track } from "@/lib/analytics";
 
 export default function Regra72Page() {
   const [annualPct, setAnnualPct] = useState<string>("8");
 
+  useEffect(() => {
+    track({
+      event: "tool_viewed",
+      page_path: "/finance/calculadora-regra-72",
+      tool_name: "Calculadora da Regra dos 72",
+    });
+  }, []);
   const n = (v: string) => Number(v.replace(/,/g, ".") || 0);
 
   const result = useMemo(() => {
