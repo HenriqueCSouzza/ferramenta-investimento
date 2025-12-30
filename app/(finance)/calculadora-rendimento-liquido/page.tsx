@@ -30,6 +30,11 @@ export default function RendimentoLiquidoPage() {
     const netPct = gross * (1 - tax) - fees;
     const invested = Number(n(amount) || 0);
     const netAmount = invested * (1 + netPct);
+    track({
+      event: "tool_used",
+      page_path: "/finance/calculadora-rendimento-liquido",
+      tool_name: "Calculadora de Rendimento Líquido",
+    });
     return { netPct: netPct * 100, netAmount };
   }, [grossPct, taxPct, feesPct, amount]);
 

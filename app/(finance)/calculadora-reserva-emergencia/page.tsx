@@ -28,6 +28,11 @@ export default function CalculadoraReservaPage() {
     const mo = Math.max(0, Math.floor(Number(months) || 0));
     const base = m * mo;
     const buffer = base * (numeric(safetyBufferPct) / 100);
+    track({
+      event: "tool_used",
+      page_path: "/finance/calculadora-reserva-emergencia",
+      tool_name: "Calculadora de Reserva de Emergência",
+    });
     return { base, buffer, total: base + buffer };
   }, [monthlyExpense, months, safetyBufferPct]);
 

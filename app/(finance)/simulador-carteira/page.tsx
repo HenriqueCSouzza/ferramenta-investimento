@@ -37,6 +37,11 @@ export default function SimuladorCarteiraPage() {
       cash = cash * (1 + returnsRate.cash);
       rows.push({ year: y, total: stocks + bonds + cash, stocks, bonds, cash });
     }
+    track({
+      event: "tool_used",
+      page_path: "/finance/simulador-carteira",
+      tool_name: "Simulador de Carteira",
+    });
     return rows;
   };
 

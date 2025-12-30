@@ -74,6 +74,11 @@ export default function ConversorDeMoedasPage() {
         },
         ...h,
       ]);
+      track({
+        event: "tool_used",
+        page_path: "/finance/conversor-de-moedas",
+        tool_name: "Conversor de Moedas",
+      });
     } catch (e) {
       console.error(e);
       alert("Erro ao converter moedas. Tente novamente.");

@@ -85,7 +85,11 @@ export default function SimuladorFiisPage() {
         accumulated: Number(accumulated),
       });
     }
-
+    track({
+      event: "tool_used",
+      page_path: "/finance/simulador-fiis",
+      tool_name: "Simulador de FIIs",
+    });
     setRows(result);
   }
 

@@ -23,6 +23,11 @@ export default function ConversorTaxasPage() {
     const m = numeric(monthlyPct) / 100;
     const effectiveAnnual = Math.pow(1 + m, 12) - 1;
     const nominalAnnual = m * 12;
+    track({
+      event: "tool_used",
+      page_path: "/finance/conversor-taxas",
+      tool_name: "Conversor de Taxas (% mês → % ano)",
+    });
     return {
       effectiveAnnual: effectiveAnnual * 100,
       nominalAnnual: nominalAnnual * 100,

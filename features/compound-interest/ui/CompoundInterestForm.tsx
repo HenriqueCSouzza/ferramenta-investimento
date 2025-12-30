@@ -23,6 +23,7 @@ import {
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import SimulationResultTable from "./SimulationResultTable";
 import SimulationChart from "./SimulationChart";
+import { track } from "@/lib/analytics";
 
 const simulationSchema = z.object({
   initialAmount: z
@@ -87,6 +88,11 @@ export default function CompoundInterestForm() {
   } = form;
 
   const onSubmit = (values: SimulationFormValues) => {
+    track({
+      event: "tool_used",
+      page_path: "/finance/simulador-juros-compostos",
+      tool_name: "Simulador de Juros Compostos",
+    });
     const simulationResult = calculateCompoundInterest({
       initialAmount: values.initialAmount,
       monthlyContribution: values.monthlyContribution,

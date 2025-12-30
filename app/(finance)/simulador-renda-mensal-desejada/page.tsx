@@ -55,6 +55,13 @@ export default function SimuladorRendaMensalDesejada() {
       const cap = my > 0 ? desiredMonthly / my : 0;
       rows.push({ yield: pct, requiredCapital: cap });
     }
+
+    track({
+      event: "tool_used",
+      page_path: "/finance/simulador-renda-mensal-desejada",
+      tool_name: "Simulador de Renda Mensal Desejada",
+    });
+
     return rows;
   }, [desiredMonthly, annualYieldPct, scenariosRange]);
 

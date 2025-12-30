@@ -63,7 +63,11 @@ export default function SimuladorDividendosPage() {
         accumulatedDividends: Number(accumulated),
       });
     }
-
+    track({
+      event: "tool_used",
+      page_path: "/finance/simulador-dividendos",
+      tool_name: "Simulador de Dividendos",
+    });
     setRows(result);
   }
 

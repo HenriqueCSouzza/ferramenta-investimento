@@ -32,6 +32,12 @@ function calculateIRPF(taxableIncome: number) {
     }
   }
   if (tax < 0) tax = 0;
+
+  track({
+    event: "tool_used",
+    page_path: "/finance/simulador-imposto-de-renda",
+    tool_name: "Simulador de Imposto de Renda",
+  });
   return { tax, effectiveRate: tax / taxableIncome };
 }
 

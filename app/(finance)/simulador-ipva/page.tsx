@@ -41,6 +41,11 @@ export default function SimuladorIPVAPage() {
   const result = useMemo(() => {
     const value = numeric(vehicleValue);
     const tax = value * (appliedRate / 100);
+    track({
+      event: "tool_used",
+      page_path: "/finance/simulador-ipva",
+      tool_name: "Simulador de IPVA",
+    });
     return { value, rate: appliedRate, tax };
   }, [vehicleValue, appliedRate]);
 

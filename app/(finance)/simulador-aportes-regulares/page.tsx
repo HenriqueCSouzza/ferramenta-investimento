@@ -35,6 +35,11 @@ export default function SimuladorAportesRegularesPage() {
     }
     // include year 0
     data.unshift({ year: 0, total: initial });
+    track({
+      event: "tool_used",
+      page_path: "/finance/simulador-aportes-regulares",
+      tool_name: "Simulador de Aportes Regulares",
+    });
     return data;
   }, [initial, contribution, monthlyRate, years]);
 

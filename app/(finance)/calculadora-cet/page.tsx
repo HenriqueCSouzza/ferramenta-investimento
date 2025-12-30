@@ -33,6 +33,12 @@ export default function CalculadoraCETPage() {
     const totalPaid = payment * nMonths;
     // annualized CET approximation
     const cetAnnual = Math.pow(totalPaid / pv, 12 / nMonths) - 1;
+
+    track({
+      event: "tool_used",
+      page_path: "/finance/calculadora-cet",
+      tool_name: "Calculadora CET (simplificada)",
+    });
     return { payment, totalPaid, cetAnnual: cetAnnual * 100 };
   }, [principal, months, monthlyRatePct]);
 

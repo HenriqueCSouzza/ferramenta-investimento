@@ -28,6 +28,11 @@ export default function InflacaoAcumuladaPage() {
     const factor = Math.pow(1 + r, y);
     const inflationPct = (factor - 1) * 100;
     const adjusted = n(amount) * factor;
+    track({
+      event: "tool_used",
+      page_path: "/finance/calculadora-inflacao-acumulada",
+      tool_name: "Calculadora de Inflação Acumulada",
+    });
     return { factor, inflationPct, adjusted };
   }, [annualPct, years, amount]);
 

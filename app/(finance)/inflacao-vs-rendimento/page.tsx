@@ -36,6 +36,11 @@ export default function InflacaoVsRendimentoPage() {
         realTotal: Number(realTotal.toFixed(2)),
       });
     }
+    track({
+      event: "tool_used",
+      page_path: "/finance/inflacao-vs-rendimento",
+      tool_name: "Inflação x Rendimento",
+    });
     return arr;
   }, [principal, nominalRate, realRate, years]);
 

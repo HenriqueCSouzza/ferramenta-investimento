@@ -23,6 +23,11 @@ export default function Regra72Page() {
     const r = n(annualPct) / 100;
     const rule72 = r > 0 ? 72 / (r * 100) : Infinity; // note: formula expects percent
     const exact = r > 0 ? Math.log(2) / Math.log(1 + r) : Infinity;
+    track({
+      event: "tool_used",
+      page_path: "/finance/calculadora-regra-72",
+      tool_name: "Calculadora da Regra dos 72",
+    });
     return { rule72, exact };
   }, [annualPct]);
 

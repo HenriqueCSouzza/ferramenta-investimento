@@ -29,6 +29,11 @@ export default function SimuladorJurosSimplesPage() {
         total: Number(total.toFixed(2)),
       });
     }
+    track({
+      event: "tool_used",
+      page_path: "/finance/simulador-juros-simples",
+      tool_name: "Simulador de Juros Simples",
+    });
     return data;
   }, [principal, rate, years]);
 
