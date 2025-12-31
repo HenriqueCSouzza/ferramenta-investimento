@@ -91,7 +91,12 @@ export default function SimuladorIRPFPage() {
         (result.effectiveRate * 100).toFixed(2) + "%",
       ],
     ];
-
+    track({
+      event: "export_result",
+      page_path: "/finance/simulador-imposto-de-renda",
+      tool_name: "Simulador de Imposto de Renda",
+      export_type: "csv",
+    });
     // semicolon delimiter for pt-BR compatibility
     const csv = rows.map((r) => r.join(";")).join("\r\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });

@@ -107,6 +107,12 @@ export default function CompoundInterestForm() {
   const handleDownloadCsv = () => {
     if (!result) return;
 
+    track({
+      event: "export_result",
+      page_path: "/finance/simulador-juros-compostos",
+      tool_name: "Simulador de Juros Compostos",
+      export_type: "csv",
+    });
     const csv = buildSimulationCsv(result);
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);

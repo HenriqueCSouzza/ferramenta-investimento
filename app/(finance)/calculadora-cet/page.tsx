@@ -39,6 +39,7 @@ export default function CalculadoraCETPage() {
       page_path: "/finance/calculadora-cet",
       tool_name: "Calculadora CET (simplificada)",
     });
+
     return { payment, totalPaid, cetAnnual: cetAnnual * 100 };
   }, [principal, months, monthlyRatePct]);
 
@@ -46,6 +47,12 @@ export default function CalculadoraCETPage() {
     const brl = new Intl.NumberFormat("pt-BR", {
       style: "currency",
       currency: "BRL",
+    });
+    track({
+      event: "export_result",
+      page_path: "/finance/calculadora-cet",
+      tool_name: "Calculadora CET (simplificada)",
+      export_type: "csv",
     });
     const rows = [
       [

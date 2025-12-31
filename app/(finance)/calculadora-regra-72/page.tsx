@@ -40,6 +40,12 @@ export default function Regra72Page() {
         result.exact === Infinity ? "-" : result.exact.toFixed(4),
       ],
     ];
+    track({
+      event: "export_result",
+      page_path: "/finance/calculadora-regra-72",
+      tool_name: "Calculadora da Regra dos 72",
+      export_type: "csv",
+    });
     const csv = rows.map((r) => r.join(";")).join("\r\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);

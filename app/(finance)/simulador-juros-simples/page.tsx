@@ -38,6 +38,12 @@ export default function SimuladorJurosSimplesPage() {
   }, [principal, rate, years]);
 
   const exportCSV = () => {
+    track({
+      event: "export_result",
+      page_path: "/finance/simulador-juros-simples",
+      tool_name: "Simulador de Juros Simples",
+      export_type: "csv",
+    });
     const header = ["Ano", "Juros", "Total"];
     const csv = [header.join(",")]
       .concat(

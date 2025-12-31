@@ -122,6 +122,12 @@ export default function SimuladorFiisPage() {
         r.accumulated.toFixed(6),
       ].join(",")
     );
+    track({
+      event: "export_result",
+      page_path: "/finance/simulador-fiis",
+      tool_name: "Simulador de FIIs",
+      export_type: "csv",
+    });
     const csv = [header.join(";"), ...lines].join("\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);

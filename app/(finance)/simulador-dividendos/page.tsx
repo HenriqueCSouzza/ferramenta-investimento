@@ -89,6 +89,12 @@ export default function SimuladorDividendosPage() {
         r.accumulatedDividends.toFixed(6),
       ].join(",")
     );
+    track({
+      event: "export_result",
+      page_path: "/finance/simulador-dividendos",
+      tool_name: "Simulador de Dividendos",
+      export_type: "csv",
+    });
     const csv = [header.join(";"), ...lines].join("\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);

@@ -43,6 +43,12 @@ export default function ConversorTaxasPage() {
         result.effectiveAnnual.toFixed(6),
       ],
     ];
+    track({
+      event: "export_result",
+      page_path: "/finance/calculadora-inflacao-acumulada",
+      tool_name: "Conversor de Taxas",
+      export_type: "csv",
+    });
     const csv = rows.map((r) => r.join(";")).join("\r\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);

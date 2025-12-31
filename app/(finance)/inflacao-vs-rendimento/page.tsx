@@ -45,6 +45,12 @@ export default function InflacaoVsRendimentoPage() {
   }, [principal, nominalRate, realRate, years]);
 
   const exportCSV = () => {
+    track({
+      event: "export_result",
+      page_path: "/finance/inflacao-vs-rendimento",
+      tool_name: "Inflação x Rendimento",
+      export_type: "csv",
+    });
     const header = ["Ano", "Total Nominal", "Total Real"];
     const csv = [header.join(",")]
       .concat(

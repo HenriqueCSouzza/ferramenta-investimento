@@ -59,7 +59,12 @@ export default function CalculadoraReservaPage() {
         brl.format(required.total),
       ],
     ];
-
+    track({
+      event: "export_result",
+      page_path: "/finance/calculadora-reserva-emergencia",
+      tool_name: "Calculadora de Reserva de Emergência",
+      export_type: "csv",
+    });
     const csv = rows.map((r) => r.join(";")).join("\r\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);

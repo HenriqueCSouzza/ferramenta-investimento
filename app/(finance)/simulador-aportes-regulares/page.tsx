@@ -44,6 +44,12 @@ export default function SimuladorAportesRegularesPage() {
   }, [initial, contribution, monthlyRate, years]);
 
   const exportCSV = () => {
+    track({
+      event: "export_result",
+      page_path: "/finance/simulador-aportes-regulares",
+      tool_name: "Simulador de Aportes Regulares",
+      export_type: "csv",
+    });
     const header = ["Ano", "Total"];
     const csv = [header.join(",")]
       .concat(rows.map((r) => [r.year, r.total.toFixed(2)].join(",")))

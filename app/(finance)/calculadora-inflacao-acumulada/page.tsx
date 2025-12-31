@@ -41,6 +41,12 @@ export default function InflacaoAcumuladaPage() {
       style: "currency",
       currency: "BRL",
     });
+    track({
+      event: "export_result",
+      page_path: "/finance/calculadora-inflacao-acumulada",
+      tool_name: "Calculadora de Inflação Acumulada",
+      export_type: "csv",
+    });
     const rows = [
       [
         "Inflação anual (%)",

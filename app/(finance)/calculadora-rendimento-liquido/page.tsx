@@ -59,6 +59,12 @@ export default function RendimentoLiquidoPage() {
         brl.format(result.netAmount),
       ],
     ];
+    track({
+      event: "export_result",
+      page_path: "/finance/calculadora-rendimento-liquido",
+      tool_name: "Calculadora de Rendimento Líquido",
+      export_type: "csv",
+    });
     const csv = rows.map((r) => r.join(";")).join("\r\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);

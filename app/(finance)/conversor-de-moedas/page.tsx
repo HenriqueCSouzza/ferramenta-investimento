@@ -92,6 +92,12 @@ export default function ConversorDeMoedasPage() {
     const rows = history.map((h) =>
       [h.from, h.to, h.amount.toString(), h.result.toFixed(6), h.date].join(",")
     );
+    track({
+      event: "export_result",
+      page_path: "/finance/conversor-de-moedas",
+      tool_name: "Conversor de Moedas",
+      export_type: "csv",
+    });
     const csv = [header.join(";"), ...rows].join("\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);

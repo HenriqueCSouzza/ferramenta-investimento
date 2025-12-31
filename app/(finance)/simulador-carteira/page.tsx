@@ -48,6 +48,12 @@ export default function SimuladorCarteiraPage() {
   const rows = compute();
 
   const exportCSV = () => {
+    track({
+      event: "export_result",
+      page_path: "/finance/simulador-carteira",
+      tool_name: "Simulador de Carteira",
+      export_type: "csv",
+    });
     const header = ["Ano", "Total", "Ações", "Renda Fixa", "Caixa"];
     const csv = [header.join(",")]
       .concat(

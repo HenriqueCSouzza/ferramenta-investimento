@@ -63,6 +63,12 @@ export default function SimuladorIPVAPage() {
         brl.format(result.tax),
       ],
     ];
+    track({
+      event: "export_result",
+      page_path: "/finance/simulador-ipva",
+      tool_name: "Simulador de IPVA",
+      export_type: "csv",
+    });
     const csv = rows.map((r) => r.join(";")).join("\r\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
