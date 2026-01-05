@@ -24,6 +24,8 @@
   },
   "include": [
     "next-env.d.ts",
+    "velite.config.ts",
+    ".velite/**/*",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",

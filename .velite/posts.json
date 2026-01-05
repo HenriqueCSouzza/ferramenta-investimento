@@ -1,0 +1,18 @@
+[
+  {
+    "slug": "juros-compostos",
+    "title": "Juros compostos: o que é e como calcular",
+    "description": "Entenda juros compostos com exemplos e veja como simular rapidamente.",
+    "date": "2026-01-05T00:00:00.000Z",
+    "tags": [
+      "investimentos",
+      "juros compostos"
+    ],
+    "metadata": {
+      "readingTime": 1,
+      "wordCount": 22
+    },
+    "excerpt": "Juros compostos\nJuros compostos são os juros sobre juros.\nSimule agora\nVocê pode usar a ferramenta:\n\n  Abrir simulador de juros compostos\n",
+    "code": "const{Fragment:o,jsx:r,jsxs:e}=arguments[0];function _createMdxContent(n){const t={h1:\"h1\",h2:\"h2\",p:\"p\",...n.components},{LinkTool:s}=t;return s||function(o,r){throw new Error(\"Expected \"+(r?\"component\":\"object\")+\" `\"+o+\"` to be defined: you likely forgot to import, pass, or provide it.\")}(\"LinkTool\",!0),e(o,{children:[r(t.h1,{children:\"Juros compostos\"}),\"\\n\",r(t.p,{children:\"Juros compostos são os juros sobre juros.\"}),\"\\n\",r(t.h2,{children:\"Simule agora\"}),\"\\n\",r(t.p,{children:\"Você pode usar a ferramenta:\"}),\"\\n\",r(s,{href:\"/simulador-juros-compostos\",children:r(t.p,{children:\"Abrir simulador de juros compostos\"})})]})}return{default:function(o={}){const{wrapper:e}=o.components||{};return e?r(e,{...o,children:r(_createMdxContent,{...o})}):_createMdxContent(o)}};"
+  }
+]
