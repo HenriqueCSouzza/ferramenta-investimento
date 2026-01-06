@@ -5,7 +5,10 @@ import { MDXContent } from "@/components/mdx-content";
 import Image from "next/image";
 import { BlogHeroImage } from "@/components/ui/BlogHeroImage";
 import { formatDate } from "@/utils/date";
-
+import { getRelatedPosts } from "@/lib/related";
+import { RelatedPosts } from "@/components/RelatedPosts";
+import { getRelatedTools } from "@/lib/tools";
+import { RelatedTools } from "@/components/RelatedTools";
 interface LinkToolProps {
   href: string;
   children: React.ReactNode;
@@ -55,9 +58,10 @@ export default async function BlogPostPage({
 }) {
   const { slug } = await params;
   const post = posts.find((p) => p.slug === slug);
-
   if (!post) return notFound();
 
+  const related = getRelatedPosts(posts, post.slug, 4);
+  const relatedTools = getRelatedTools(post.slug);
   return (
     <main className="mx-auto w-full max-w-3xl px-4 py-10">
       <header className="space-y-2">
@@ -78,6 +82,8 @@ export default async function BlogPostPage({
           }}
         />
       </article>
+      <RelatedTools tools={relatedTools} />
+      <RelatedPosts posts={related} />
     </main>
   );
 }
