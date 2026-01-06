@@ -2,6 +2,10 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { posts } from "@/content";
 import { MDXContent } from "@/components/mdx-content";
+import Image from "next/image";
+import { BlogHeroImage } from "@/components/ui/BlogHeroImage";
+import { formatDate } from "@/utils/date";
+
 interface LinkToolProps {
   href: string;
   children: React.ReactNode;
@@ -23,8 +27,13 @@ export function generateStaticParams() {
   return posts.map((p) => ({ slug: p.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = posts.find((p) => p.slug === params.slug);
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const { slug } = await params;
+  const post = posts.find((p) => p.slug === slug);
   if (!post) return {};
   return {
     title: post.title,
@@ -46,7 +55,6 @@ export default async function BlogPostPage({
 }) {
   const { slug } = await params;
   const post = posts.find((p) => p.slug === slug);
-  console.log(posts, params.slug, post);
 
   if (!post) return notFound();
 
@@ -55,13 +63,19 @@ export default async function BlogPostPage({
       <header className="space-y-2">
         <h1 className="text-3xl font-semibold">{post.title}</h1>
         <p className="text-sm text-muted-foreground">{post.description}</p>
-        <p className="text-xs text-muted-foreground">{post.date}</p>
+        <p className="text-xs text-muted-foreground">
+          {formatDate(new Date(post.date))}
+        </p>
       </header>
 
       <article className="prose mt-10 max-w-none">
         <MDXContent
           code={post.code}
-          components={{ LinkTool: LinkTool as never }}
+          components={{
+            LinkTool: LinkTool as never,
+            Image: Image as never,
+            BlogHeroImage: BlogHeroImage as never,
+          }}
         />
       </article>
     </main>
