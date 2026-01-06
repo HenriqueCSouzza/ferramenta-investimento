@@ -3,6 +3,7 @@
 import Link from "next/link";
 import type { Tool } from "@/lib/tools-catalog";
 import { track } from "@/lib/analytics";
+import { ToolLink } from "@/lib/tools";
 
 function trackToolClick(tool: Tool) {
   track({
@@ -17,7 +18,7 @@ export function RelatedTools({
   tools,
   title = "Ferramentas relacionadas",
 }: {
-  tools: Tool[];
+  tools: ToolLink[];
   title?: string;
 }) {
   if (!tools?.length) return null;
@@ -29,9 +30,9 @@ export function RelatedTools({
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         {tools.map((t) => (
           <Link
-            key={t.id}
+            key={t.href}
             href={t.href}
-            onClick={() => trackToolClick(t)}
+            onClick={() => trackToolClick(t.href as unknown as Tool)}
             className="rounded-xl border bg-white/60 px-4 py-3 text-sm underline transition hover:bg-white"
           >
             {t.label}
