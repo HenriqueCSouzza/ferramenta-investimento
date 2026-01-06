@@ -50,6 +50,21 @@ export default function Header() {
                 Início
               </Link>
             </li>
+            <li>
+              <Link
+                href="/blog"
+                className="text-sm text-slate-700 hover:text-slate-900"
+                onClick={() =>
+                  trackNavClick({
+                    nav_item: "blog",
+                    nav_label: "Blog",
+                    nav_href: "/blog",
+                  })
+                }
+              >
+                Blog
+              </Link>
+            </li>
 
             <li>
               <DropdownMenu>
